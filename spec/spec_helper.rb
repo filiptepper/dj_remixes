@@ -24,13 +24,13 @@ end
 
 module Rails
   class << self
-    
+
     def version
       '3.0.0'
     end
 
     attr_accessor :logger
-    
+
   end
 end
 
@@ -51,49 +51,49 @@ require 'rspec'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'dj_remixes', 'requires')
 
 
-Rspec.configure do |config|
-  
+RSpec.configure do |config|
+
   config.before(:all) do
-    
+
   end
-  
+
   config.after(:all) do
-    
+
   end
-  
+
   config.before(:each) do
     Timecop.freeze(DateTime.now)
   end
-  
+
   config.after(:each) do
     Timecop.return
     DJ.delete_all
   end
-  
+
 end
 
 class WillFailJob < DJ::Worker
-  
+
   def perform
     1 / nil
   end
-  
+
 end
 
 class SimpleWorker < DJ::Worker
-  
+
   def perform
   end
-  
+
 end
 
 class RunForeverWorker < DJ::Worker
   re_enqueue
-  
+
   def perform
     Greeter.greet("Hi from RunForeverWorker")
   end
-  
+
 end
 
 class IHaveArgsWorker < DJ::Worker
@@ -125,7 +125,7 @@ end
 
 class OneOfAKind < DJ::Worker
   is_unique
-  
+
   def perform
   end
 end
