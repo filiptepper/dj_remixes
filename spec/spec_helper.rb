@@ -4,7 +4,7 @@ require 'logger'
 require 'timecop'
 
 FileUtils.mkdir_p(File.join(File.dirname(__FILE__), 'tmp'))
-RAILS_DEFAULT_LOGGER = Logger.new(File.join(File.dirname(__FILE__), 'tmp', 'dj.log'))
+RAILS_DEFAULT_LOGGER = Logger.new(File.join(File.dirname(__FILE__), 'tmp', 'dj.log')) unless defined?("RAILS_DEFAULT_LOGGER")
 
 # require 'railties'
 # require 'activesupport'
